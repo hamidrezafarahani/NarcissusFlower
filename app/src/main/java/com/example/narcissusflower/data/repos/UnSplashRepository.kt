@@ -6,7 +6,9 @@ import androidx.paging.PagingData
 import com.example.narcissusflower.data.datasource.UnSplashPagingSource
 import com.example.narcissusflower.data.remote.UnSplashPhoto
 import com.example.narcissusflower.data.remote.UnSplashService
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class UnSplashRepository @Inject constructor(
@@ -17,7 +19,7 @@ class UnSplashRepository @Inject constructor(
         val pagingConfig = PagingConfig(pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false)
         return Pager(config = pagingConfig) {
             UnSplashPagingSource(service, query)
-        }.flow
+        }.flow.flowOn(Dispatchers.IO)
     }
 
     companion object {
