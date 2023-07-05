@@ -1,3 +1,7 @@
 <resources>
+
     <string name="app_name">NarcissusFlower</string>
+    <string name="add_plant">Add plant</string>
+    <string name="garden_empty">Your garden is empty</string>
+    
 </resources>
