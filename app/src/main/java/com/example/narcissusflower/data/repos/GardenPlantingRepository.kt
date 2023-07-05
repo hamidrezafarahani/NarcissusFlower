@@ -3,7 +3,9 @@ package com.example.narcissusflower.data.repos
 import com.example.narcissusflower.data.local.dao.GardenPlantingDao
 import com.example.narcissusflower.data.local.entities.GardenPlanting
 import com.example.narcissusflower.data.local.entities.PlantAndGardenPlantings
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class GardenPlantingRepository @Inject constructor(
@@ -11,7 +13,7 @@ class GardenPlantingRepository @Inject constructor(
 ) {
 
     fun getPlantedGardens(): Flow<List<PlantAndGardenPlantings>> {
-        return dao.getPlantedGardens()
+        return dao.getPlantedGardens().flowOn(Dispatchers.IO)
     }
 
     fun isPlanted(plantId: String): Flow<Boolean> {
