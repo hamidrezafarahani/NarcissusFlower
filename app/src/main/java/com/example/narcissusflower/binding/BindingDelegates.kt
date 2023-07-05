@@ -1,4 +1,4 @@
-package com.example.narcissusflower.utils
+package com.example.narcissusflower.binding
 
 import android.view.View
 import androidx.databinding.ViewDataBinding

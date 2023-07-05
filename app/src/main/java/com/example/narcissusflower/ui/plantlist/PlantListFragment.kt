@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.narcissusflower.R
 import com.example.narcissusflower.databinding.FragmentPlantListBinding
-import com.example.narcissusflower.utils.dataBindings
+import com.example.narcissusflower.binding.dataBindings
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
