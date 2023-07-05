@@ -1,5 +1,6 @@
 package com.example.narcissusflower.data.remote
 
+import com.example.narcissusflower.data.remote.dtos.UnSplashSearchResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -4,7 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.example.narcissusflower.data.datasource.UnSplashPagingSource
-import com.example.narcissusflower.data.remote.UnSplashPhoto
+import com.example.narcissusflower.data.remote.dtos.UnSplashPhoto
 import com.example.narcissusflower.data.remote.UnSplashService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

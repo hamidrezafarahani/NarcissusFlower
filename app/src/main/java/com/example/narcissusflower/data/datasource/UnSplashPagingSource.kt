@@ -2,7 +2,7 @@ package com.example.narcissusflower.data.datasource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.narcissusflower.data.remote.UnSplashPhoto
+import com.example.narcissusflower.data.remote.dtos.UnSplashPhoto
 import com.example.narcissusflower.data.remote.UnSplashService
 
 private const val UNSPLASH_STARTING_PAGE_INDEX = 1

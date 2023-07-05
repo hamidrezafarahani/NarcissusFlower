@@ -1,4 +1,4 @@
-package com.example.narcissusflower.data.remote
+package com.example.narcissusflower.data.remote.dtos
 
 import com.google.gson.annotations.SerializedName as SN
 

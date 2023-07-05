@@ -2,7 +2,7 @@ package com.example.narcissusflower.domain
 
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.narcissusflower.data.remote.UnSplashPhoto
+import com.example.narcissusflower.data.remote.dtos.UnSplashPhoto
 import com.example.narcissusflower.data.repos.UnSplashRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharedFlow
