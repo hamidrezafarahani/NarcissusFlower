@@ -3,5 +3,8 @@
     <string name="app_name">NarcissusFlower</string>
     <string name="add_plant">Add plant</string>
     <string name="garden_empty">Your garden is empty</string>
-    
+    <string name="item_picture_plant">picture of plant</string>
+    <string name="plant_text_header">Planted</string>
+    <string name="watered_date_header">Last Watered</string>
+
 </resources>

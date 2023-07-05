@@ -12,4 +12,6 @@
 
     <dimen name="header_margin">24dp</dimen>
 
+    <dimen name="plant_item_image_height">95dp</dimen>
+
 </resources>

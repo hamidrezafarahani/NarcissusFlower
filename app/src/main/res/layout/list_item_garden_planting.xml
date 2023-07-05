@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.example.narcissusflower.ui.garden.PlantAndGardenViewModel" />
+
+        <variable
+            name="viewModel"
+            type="PlantAndGardenViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/card_side_margin"
+        android:layout_marginEnd="@dimen/card_side_margin"
+        android:layout_marginBottom="@dimen/card_bottom_margin"
+        app:cardElevation="@dimen/card_elevation"
+        app:cardPreventCornerOverlap="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_picture_plant"
+                imageFromUrl="@{viewModel.imgUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/plant_item_image_height"
+                android:contentDescription="@string/item_picture_plant"
+                android:scaleType="centerCrop"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/plant_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.plantName}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/img_picture_plant" />
+
+            <TextView
+                android:id="@+id/plant_date_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:gravity="center_horizontal"
+                android:text="@string/plant_text_header"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="?attr/colorAccent"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/plant_name" />
+
+            <TextView
+                android:id="@+id/plant_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.plantDateString}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                app:layout_constraintTop_toBottomOf="@id/plant_date_header" />
+
+            <TextView
+                android:id="@+id/watered_date_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:gravity="center_horizontal"
+                android:text="@string/watered_date_header"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:textColor="?attr/colorAccent"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/plant_date" />
+
+            <TextView
+                android:id="@+id/water_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.waterDateString}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                app:layout_constraintTop_toBottomOf="@id/watered_date_header" />
+
+            <TextView
+                android:id="@+id/water_interval"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="@dimen/margin_normal"
+                android:gravity="center_horizontal"
+                android:text="@{viewModel.wateringInterval}"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                app:layout_constraintTop_toBottomOf="@id/water_date" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>
