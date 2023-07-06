@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="hasPlantings"
+            type="Boolean" />
+
     </data>
 
     <FrameLayout
@@ -13,6 +17,7 @@
         tools:context=".ui.garden.GardenFragment">
 
         <LinearLayout
+            isGone="@{hasPlantings}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -36,6 +41,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_garden"
+            isGone="@{!hasPlantings}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/card_side_margin"
