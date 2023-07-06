@@ -6,5 +6,6 @@
     <string name="item_picture_plant">picture of plant</string>
     <string name="plant_text_header">Planted</string>
     <string name="watered_date_header">Last Watered</string>
+    <string name="menu_filter_by_grow_zone">Filter by grow zone</string>
 
 </resources>
