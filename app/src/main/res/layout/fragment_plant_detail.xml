@@ -66,6 +66,8 @@
                     android:background="@android:color/transparent"
                     app:contentInsetStartWithNavigation="0dp"
                     app:layout_collapseMode="pin"
+                    app:menu="@menu/menu_plant_detail"
+                    app:navigationIcon="@drawable/round_arrow_back_24"
                     app:titleTextColor="?attr/colorOnSurface" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>

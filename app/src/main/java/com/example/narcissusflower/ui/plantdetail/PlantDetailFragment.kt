@@ -1,8 +1,10 @@
 package com.example.narcissusflower.ui.plantdetail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.MenuHost
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,6 +23,7 @@ class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
 
     private val binding by dataBindings(FragmentPlantDetailBinding::bind)
     private val viewModel by viewModels<PlantDetailViewModel>()
+    private val menuHost: MenuHost = requireActivity()
     private val navController: NavController = findNavController()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,9 +60,19 @@ class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
             toolbar.setNavigationOnClickListener {
                 navController.navigateUp()
             }
+
+            toolbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.action_share -> {
+                        createShareIntent()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
         }
     }
-
 
     private fun hideAppbarFab(fab: FloatingActionButton) {
         val params = fab.layoutParams as CoordinatorLayout.LayoutParams
@@ -73,6 +86,21 @@ class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
         val direction = PlantDetailFragmentDirections
             .actionPlantDetailFragmentToGalleryFragment(plantName)
         navController.navigate(direction)
+    }
+
+    private fun createShareIntent() {
+        val shareText = viewModel.plant.value.let { plant ->
+            if (plant == null) "" else "Check out the $plant plant in the Android NarcissusFlower app"
+        }
+        val sendIntent = Intent().apply {
+            action = Intent.ACTION_SEND
+            type = "text/plain"
+            putExtra(Intent.EXTRA_TEXT, shareText)
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
+        }
+        startActivity(shareIntent)
     }
 
     companion object {
