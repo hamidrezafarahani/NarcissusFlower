@@ -46,11 +46,13 @@
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
                 app:statusBarScrim="?attr/colorPrimary"
+                app:title="@{plantDetailViewModel.plant.name}"
                 app:titleEnabled="false"
                 app:toolbarId="@id/toolbar">
 
                 <ImageView
                     android:id="@+id/app_bar_image"
+                    imageFromUrl="@{plantDetailViewModel.plant.imageUrl}"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/plant_detail_appbar_height"
                     android:contentDescription="@string/item_picture_plant"
@@ -96,6 +98,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center_horizontal"
+                    android:text="@{plantDetailViewModel.plant.name}"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -107,13 +110,14 @@
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:gravity="center_horizontal"
-                    android:text="Watering needs"
+                    android:text="@string/plant_details_watering_needs"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@id/plant_detail_name" />
 
                 <TextView
                     android:id="@+id/plant_watering"
+                    wateringText="@{plantDetailViewModel.plant.wateringInterval}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
@@ -136,11 +140,14 @@
 
                 <TextView
                     android:id="@+id/plant_description"
+                    renderHtml="@{plantDetailViewModel.plant.description}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_small"
+                    android:minHeight="@dimen/plant_detail_description_min_height"
+                    android:textIsSelectable="true"
                     app:layout_constraintTop_toBottomOf="@id/plant_watering" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -150,11 +157,12 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab"
             style="@style/ShapeAppearanceOverlay.Material3.FloatingActionButton"
+            isFabGone="@{plantDetailViewModel.isPlanted()}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_normal"
             android:onClick="@{() -> callback.clickEvent()}"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/round_add_24"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|end" />
 

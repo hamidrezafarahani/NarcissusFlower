@@ -18,4 +18,6 @@
 
     <dimen name="fab_bottom_padding">72dp</dimen>
 
+    <dimen name="plant_detail_description_min_height">555dp</dimen>
+
 </resources>
