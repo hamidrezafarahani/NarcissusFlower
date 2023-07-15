@@ -17,7 +17,7 @@ class GardenViewModel @Inject constructor(
 ) : ViewModel() {
 
     val plantAndGardenPlantings: SharedFlow<List<PlantAndGardenPlantings>>
-        get() = getPlantAndGardenPlantings.items(viewModelScope) {
+        get() = getPlantAndGardenPlantings(viewModelScope) {
             Timber.tag(TAG).d(it)
         }
 

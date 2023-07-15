@@ -5,7 +5,6 @@ import androidx.paging.cachedIn
 import com.example.narcissusflower.data.remote.dtos.UnSplashPhoto
 import com.example.narcissusflower.data.repos.UnSplashRepository
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.catch
@@ -16,16 +15,12 @@ class GetPhotosUseCase @Inject constructor(
     private val repository: UnSplashRepository
 ) {
 
-    private fun items(query: String): Flow<PagingData<UnSplashPhoto>> {
-        return repository.getSearchResultStream(query)
-    }
-
-    fun items(
+    operator fun invoke(
         coroutineScope: CoroutineScope,
         query: String,
         op: (Throwable) -> Unit
     ): SharedFlow<PagingData<UnSplashPhoto>> {
-        return items(query = query)
+        return repository.getSearchResultStream(query)
             .cachedIn(coroutineScope)
             .catch { op(it) }
             .shareIn(
