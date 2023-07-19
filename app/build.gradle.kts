@@ -21,7 +21,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += mapOf(
-                    "room.schemaLocation" to "$projectDir/schemas".toString(),
+                    "room.schemaLocation" to "$projectDir/schemas",
                     "room.incremental" to "true"
                 )
             }
@@ -32,10 +32,21 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
+        }
+
+        debug {
+            isMinifyEnabled = false
+            isDebuggable = true
+            applicationIdSuffix = ".debug"
+        }
+
+        create("develop") {
+            initWith(getByName("debug"))
+            applicationIdSuffix = ".develop"
         }
     }
 
