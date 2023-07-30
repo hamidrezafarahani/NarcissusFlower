@@ -34,7 +34,7 @@ android {
 
         buildConfigField(
             "String",
-            "Access_Key",
+            "UNSPLASH_ACCESS_KEY",
             "\"${properties.getProperty("unsplash.access_key")}\""
         )
 

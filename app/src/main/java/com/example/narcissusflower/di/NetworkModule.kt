@@ -52,11 +52,11 @@ object NetworkModule {
     fun provideAuthInterceptor(): Interceptor {
         return Interceptor {
             val url = it.request().url.newBuilder().apply {
-                addQueryParameter("client_id", BuildConfig.Access_Key)
+                addQueryParameter("client_id", BuildConfig.UNSPLASH_ACCESS_KEY)
             }.build()
             val request = it.request().newBuilder()
                 .url(url)
-                /*.addHeader("Authorization", "Client-ID ${BuildConfig.Access_Key}")*/
+                /*.addHeader("Authorization", "Client-ID ${BuildConfig.UNSPLASH_ACCESS_KEY}")*/
                 .build()
             it.proceed(request)
         }
