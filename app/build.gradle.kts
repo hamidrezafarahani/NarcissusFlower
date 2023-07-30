@@ -1,3 +1,15 @@
+import java.util.Properties
+import java.io.FileInputStream
+
+fun getProperties(file: String) = Properties().apply {
+    val propertiesFile = File(file)
+    if (propertiesFile.isFile) {
+        load(FileInputStream(propertiesFile))
+    } else {
+        error("file not found or not instance of properties file.")
+    }
+}
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.android.application)
@@ -11,12 +23,20 @@ android {
     namespace = "com.example.narcissusflower"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
+    val properties = getProperties("${rootDir}/local.properties")
+
     defaultConfig {
         applicationId = "com.example.narcissusflower"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField(
+            "String",
+            "Access_Key",
+            "\"${properties.getProperty("unsplash.access_key")}\""
+        )
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -66,6 +86,7 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        buildConfig = true
     }
 }
 

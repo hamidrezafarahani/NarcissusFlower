@@ -1,8 +1,8 @@
 package com.example.narcissusflower.di
 
 import android.app.Application
+import com.example.narcissusflower.BuildConfig
 import com.example.narcissusflower.data.remote.UnSplashService
-import com.facebook.shimmer.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -16,6 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import timber.log.Timber
+import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -51,12 +52,11 @@ object NetworkModule {
     fun provideAuthInterceptor(): Interceptor {
         return Interceptor {
             val url = it.request().url.newBuilder().apply {
-                // TODO: add query parameter value
-                addQueryParameter("client_id", "")
+                addQueryParameter("client_id", BuildConfig.Access_Key)
             }.build()
             val request = it.request().newBuilder()
                 .url(url)
-                /*.addHeader("Authorization", "Bearer ....")*/
+                /*.addHeader("Authorization", "Client-ID ${BuildConfig.Access_Key}")*/
                 .build()
             it.proceed(request)
         }
@@ -64,7 +64,10 @@ object NetworkModule {
 
     @Provides
     fun provideOkHttpCache(app: Application): Cache {
-        return Cache(app.cacheDir, 50 * 1024 * 1024)
+        return Cache(
+            directory = File(app.cacheDir, "http_cache"),
+            maxSize = 50L * 1024 * 1024 // 50 MiB
+        )
     }
 
     @Provides
@@ -104,7 +107,7 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideGitHubService(retrofit: Retrofit): UnSplashService {
+    fun provideUnSplashService(retrofit: Retrofit): UnSplashService {
         return retrofit.create(UnSplashService::class.java)
     }
 }
