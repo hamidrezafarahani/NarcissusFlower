@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.view.MenuHost
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -23,11 +22,11 @@ class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
 
     private val binding by dataBindings(FragmentPlantDetailBinding::bind)
     private val viewModel by viewModels<PlantDetailViewModel>()
-    private val menuHost: MenuHost = requireActivity()
-    private val navController: NavController = findNavController()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val navController = findNavController()
 
         with(binding) {
             plantDetailViewModel = viewModel
@@ -41,7 +40,7 @@ class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
             galleryNav.setOnClickListener {
 
                 viewModel.plant.value?.let { plant ->
-                    navigateToGalleryFragment(plant)
+                    navController.navigateToGalleryFragment(plant)
                 }
             }
 
@@ -81,11 +80,11 @@ class PlantDetailFragment : Fragment(R.layout.fragment_plant_detail) {
         fab.hide()
     }
 
-    private fun navigateToGalleryFragment(plant: Plant) {
+    private fun NavController.navigateToGalleryFragment(plant: Plant) {
         val plantName = plant.name
         val direction = PlantDetailFragmentDirections
             .actionPlantDetailFragmentToGalleryFragment(plantName)
-        navController.navigate(direction)
+        navigate(direction)
     }
 
     private fun createShareIntent() {
