@@ -21,7 +21,8 @@
             android:layout_marginEnd="@dimen/card_side_margin"
             android:clipToPadding="false"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="@integer/grid_column" />
+            app:spanCount="@integer/grid_column"
+            tools:listitem="@layout/list_item_planting" />
 
     </FrameLayout>
 </layout>

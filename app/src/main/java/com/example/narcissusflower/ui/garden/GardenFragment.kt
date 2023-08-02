@@ -25,14 +25,14 @@ class GardenFragment : Fragment(R.layout.fragment_garden) {
 
     private val binding by dataBindings(FragmentGardenBinding::bind)
     private val viewModel by viewModels<GardenViewModel>()
-    private val navController: NavController = findNavController()
     private lateinit var adapter: GardenPlantingAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = GardenPlantingAdapter(viewLifecycleOwner) {
-            navigateToPlantDetailFragment(it)
+            val navController = findNavController()
+            navController.navigateToPlantDetailFragment(it)
         }
 
         binding setupUi adapter
@@ -65,10 +65,10 @@ class GardenFragment : Fragment(R.layout.fragment_garden) {
             .currentItem = PLANT_LIST_PAGE_INDEX
     }
 
-    private fun navigateToPlantDetailFragment(plantings: PlantAndGardenPlantings) {
+    private fun NavController.navigateToPlantDetailFragment(plantings: PlantAndGardenPlantings) {
         val plantId = plantings.plant.plantId
         val direction = HomeFragmentDirections.actionHomeFragmentToPlantDetailFragment(plantId)
-        navController.navigate(direction)
+        navigate(direction)
     }
 
     companion object {

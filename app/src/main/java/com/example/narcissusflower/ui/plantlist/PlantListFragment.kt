@@ -28,15 +28,14 @@ class PlantListFragment : Fragment(R.layout.fragment_plant_list) {
 
     private val binding by dataBindings(FragmentPlantListBinding::bind)
     private val viewModel by viewModels<PlantListViewModel>()
-    private val menuHost: MenuHost = requireActivity()
-    private val navController: NavController = findNavController()
     private lateinit var adapter: PlantAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = PlantAdapter(viewLifecycleOwner) {
-            navigateToPlantDetailFragment(it)
+            val navController = findNavController()
+            navController.navigateToPlantDetailFragment(it)
         }
         binding.listPlantList.adapter = adapter
 
@@ -48,6 +47,7 @@ class PlantListFragment : Fragment(R.layout.fragment_plant_list) {
             }
         }
 
+        val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(object : MenuProvider {
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
@@ -72,10 +72,10 @@ class PlantListFragment : Fragment(R.layout.fragment_plant_list) {
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
-    private fun navigateToPlantDetailFragment(plant: Plant) {
+    private fun NavController.navigateToPlantDetailFragment(plant: Plant) {
         val plantId = plant.plantId
         val direction = HomeFragmentDirections.actionHomeFragmentToPlantDetailFragment(plantId)
-        navController.navigate(direction)
+        navigate(direction)
     }
 
     companion object {
