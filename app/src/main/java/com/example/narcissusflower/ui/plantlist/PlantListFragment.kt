@@ -18,6 +18,7 @@ import com.example.narcissusflower.R
 import com.example.narcissusflower.binding.dataBindings
 import com.example.narcissusflower.data.local.entities.Plant
 import com.example.narcissusflower.databinding.FragmentPlantListBinding
+import com.example.narcissusflower.extensions.autoCleared
 import com.example.narcissusflower.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -28,12 +29,12 @@ class PlantListFragment : Fragment(R.layout.fragment_plant_list) {
 
     private val binding by dataBindings(FragmentPlantListBinding::bind)
     private val viewModel by viewModels<PlantListViewModel>()
-    private lateinit var adapter: PlantAdapter
+    private var adapter by autoCleared<PlantAdapter>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = PlantAdapter(viewLifecycleOwner) {
+        adapter = PlantAdapter {
             val navController = findNavController()
             navController.navigateToPlantDetailFragment(it)
         }
