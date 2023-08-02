@@ -7,7 +7,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerFactory
 import androidx.work.workDataOf
-import com.example.narcissusflower.tasks.SeedDBWorker
+import com.example.narcissusflower.workers.SeedDBWorker
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 

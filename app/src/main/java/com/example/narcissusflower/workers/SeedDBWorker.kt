@@ -1,10 +1,8 @@
-package com.example.narcissusflower.tasks
+package com.example.narcissusflower.workers
 
 import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
-import androidx.work.ListenableWorker
-import androidx.work.WorkerFactory
 import androidx.work.WorkerParameters
 import com.example.narcissusflower.data.local.dao.PlantDao
 import com.example.narcissusflower.data.local.entities.Plant
@@ -16,7 +14,6 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import timber.log.Timber
-import javax.inject.Inject
 
 @HiltWorker
 class SeedDBWorker @AssistedInject constructor(
@@ -51,17 +48,5 @@ class SeedDBWorker @AssistedInject constructor(
     companion object {
         private const val TAG = "SeedDB-worker"
         const val KEY_FILENAME = "PLANT_DATA_FILENAME"
-    }
-}
-
-class FeedWorkerFactory @Inject constructor(
-    private val plantDao: PlantDao
-) : WorkerFactory() {
-    override fun createWorker(
-        appContext: Context,
-        workerClassName: String,
-        workerParameters: WorkerParameters
-    ): ListenableWorker {
-        return SeedDBWorker(appContext, workerParameters, plantDao)
     }
 }

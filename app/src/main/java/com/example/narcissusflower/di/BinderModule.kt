@@ -1,7 +1,7 @@
 package com.example.narcissusflower.di
 
 import androidx.work.WorkerFactory
-import com.example.narcissusflower.tasks.FeedWorkerFactory
+import com.example.narcissusflower.workers.SeedDBWorkerFactory
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -12,5 +12,5 @@ import dagger.hilt.components.SingletonComponent
 abstract class BinderModule {
 
     @Binds
-    abstract fun bindFeedWorkerFactory(factory: FeedWorkerFactory): WorkerFactory
+    abstract fun bindFeedWorkerFactory(factory: SeedDBWorkerFactory): WorkerFactory
 }
