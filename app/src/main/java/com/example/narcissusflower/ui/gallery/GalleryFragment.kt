@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.narcissusflower.R
 import com.example.narcissusflower.binding.dataBindings
 import com.example.narcissusflower.databinding.FragmentGalleryBinding
+import com.example.narcissusflower.extensions.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -27,12 +28,12 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
     private val navController = findNavController()
     private val args by navArgs<GalleryFragmentArgs>()
     private var searchJob: Job? = null
-    private lateinit var adapter: GalleryAdapter
+    private var adapter by autoCleared<GalleryAdapter>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = GalleryAdapter(viewLifecycleOwner) {
+        adapter = GalleryAdapter {
             val uri = Uri.parse(it.user.attributionUrl)
             val intent = Intent(Intent.ACTION_VIEW, uri)
             startActivity(intent)

@@ -14,6 +14,7 @@ import com.example.narcissusflower.R
 import com.example.narcissusflower.databinding.FragmentGardenBinding
 import com.example.narcissusflower.binding.dataBindings
 import com.example.narcissusflower.data.local.entities.PlantAndGardenPlantings
+import com.example.narcissusflower.extensions.autoCleared
 import com.example.narcissusflower.ui.home.HomeFragmentDirections
 import com.example.narcissusflower.ui.home.PLANT_LIST_PAGE_INDEX
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,12 +26,12 @@ class GardenFragment : Fragment(R.layout.fragment_garden) {
 
     private val binding by dataBindings(FragmentGardenBinding::bind)
     private val viewModel by viewModels<GardenViewModel>()
-    private lateinit var adapter: GardenPlantingAdapter
+    private var adapter by autoCleared<GardenPlantingAdapter>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = GardenPlantingAdapter(viewLifecycleOwner) {
+        adapter = GardenPlantingAdapter {
             val navController = findNavController()
             navController.navigateToPlantDetailFragment(it)
         }

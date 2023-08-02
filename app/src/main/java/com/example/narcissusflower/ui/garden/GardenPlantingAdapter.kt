@@ -2,7 +2,6 @@ package com.example.narcissusflower.ui.garden
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,6 @@ import com.example.narcissusflower.data.local.entities.PlantAndGardenPlantings
 import com.example.narcissusflower.databinding.ListItemGardenPlantingBinding
 
 class GardenPlantingAdapter(
-    private val owner: LifecycleOwner,
     private val op: (PlantAndGardenPlantings) -> Unit
 ) : ListAdapter<PlantAndGardenPlantings, GardenPlantingAdapter.ViewHolder>(DiffCallback) {
 
@@ -30,7 +28,6 @@ class GardenPlantingAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.lifecycleOwner = owner
             itemView.setOnClickListener {
                 val plantAndGardenPlantings = getItem(absoluteAdapterPosition)
                 op(plantAndGardenPlantings)

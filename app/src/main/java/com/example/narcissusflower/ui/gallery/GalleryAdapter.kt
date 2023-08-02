@@ -2,7 +2,6 @@ package com.example.narcissusflower.ui.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LifecycleOwner
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +9,6 @@ import com.example.narcissusflower.data.remote.dtos.UnSplashPhoto
 import com.example.narcissusflower.databinding.ListItemPhotoBinding
 
 class GalleryAdapter(
-    private val owner: LifecycleOwner,
     private val op: (UnSplashPhoto) -> Unit
 ) : PagingDataAdapter<UnSplashPhoto, GalleryAdapter.ViewHolder>(DiffCallback) {
 
@@ -31,7 +29,6 @@ class GalleryAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
-            binding.lifecycleOwner = owner
             itemView.setOnClickListener {
                 val photo = getItem(absoluteAdapterPosition)
                 photo?.let(op)
