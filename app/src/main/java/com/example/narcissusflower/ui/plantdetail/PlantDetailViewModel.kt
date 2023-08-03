@@ -18,7 +18,7 @@ class PlantDetailViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val plantId = savedStateHandle.get<String>(PLANT_ID_SAVED_STATE_KEY)!!
+    private val plantId = savedStateHandle.get<String>(PLANT_ID_SAVED_STATE_KEY)!!
 
     val isPlanted = gardenPlantingRepository.isPlanted(plantId).stateIn(
         scope = viewModelScope, started = SharingStarted.WhileSubscribed(), initialValue = false
