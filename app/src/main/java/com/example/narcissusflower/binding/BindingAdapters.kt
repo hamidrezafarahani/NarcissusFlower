@@ -11,7 +11,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @BindingAdapter("imageFromUrl")
-fun ImageView.bindFrom(url: String) = Glide.with(this)
+fun ImageView.bindFrom(url: String?) = Glide.with(this)
     .load(url)
     .transition(DrawableTransitionOptions.withCrossFade())
     .into(this)
@@ -23,7 +23,7 @@ fun View.isGone(result: Boolean = false) {
 }
 
 @BindingAdapter("isFabGone")
-fun FloatingActionButton.isFabGone(isGone: Boolean) = if (isGone) hide() else show()
+fun FloatingActionButton.isFabGone(isGone: Boolean = false) = if (isGone) hide() else show()
 
 @BindingAdapter("renderHtml")
 fun TextView.bindFromHtml(description: String?) {
@@ -34,6 +34,6 @@ fun TextView.bindFromHtml(description: String?) {
 }
 
 @BindingAdapter("wateringText")
-fun TextView.bindWateringInterval(wateringInterval: Int) {
+fun TextView.bindWateringInterval(wateringInterval: Int = 1) {
     text = if (wateringInterval > 1) "every $wateringInterval days" else "every day"
 }
