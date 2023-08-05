@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.paging.LoadState
 import com.example.narcissusflower.R
 import com.example.narcissusflower.binding.dataBindings
 import com.example.narcissusflower.databinding.FragmentGalleryBinding
@@ -50,10 +51,22 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
 
     private fun search(query: String) {
         searchJob?.cancel()
-        searchJob = lifecycleScope.launch {
+        searchJob = viewLifecycleOwner.lifecycleScope.launch {
+
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.search(query).collectLatest {
                     adapter.submitData(it)
+                }
+            }
+
+            // TODO: impl error handling
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                adapter.loadStateFlow.collectLatest { loadState ->
+                    when (loadState.refresh) {
+                        is LoadState.Loading -> {}
+                        is LoadState.NotLoading -> {}
+                        is LoadState.Error -> {}
+                    }
                 }
             }
         }
