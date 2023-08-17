@@ -47,6 +47,20 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
         }
 
         search(args.plantName)
+
+        // TODO: impl error handling
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                adapter.loadStateFlow.collectLatest { loadState ->
+                    when (loadState.refresh) {
+                        is LoadState.Loading -> {}
+                        is LoadState.NotLoading -> {}
+                        is LoadState.Error -> {}
+                    }
+                }
+            }
+        }
     }
 
     private fun search(query: String) {
@@ -56,17 +70,6 @@ class GalleryFragment : Fragment(R.layout.fragment_gallery) {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.search(query).collectLatest {
                     adapter.submitData(it)
-                }
-            }
-
-            // TODO: impl error handling
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                adapter.loadStateFlow.collectLatest { loadState ->
-                    when (loadState.refresh) {
-                        is LoadState.Loading -> {}
-                        is LoadState.NotLoading -> {}
-                        is LoadState.Error -> {}
-                    }
                 }
             }
         }
