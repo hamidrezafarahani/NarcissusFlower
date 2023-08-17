@@ -17,11 +17,11 @@ private const val PLANT_DATA_FILE = "plants.json"
 class App : Application(), Configuration.Provider {
 
     @Inject
-    lateinit var feedWorkerFactory: WorkerFactory
+    lateinit var workerFactory: WorkerFactory
 
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()
-            .setWorkerFactory(feedWorkerFactory)
+            .setWorkerFactory(workerFactory)
             .setMinimumLoggingLevel(Log.DEBUG)
             .build()
     }
