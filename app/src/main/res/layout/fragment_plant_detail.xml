@@ -41,7 +41,7 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 app:collapsedTitleGravity="center"
-                app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
+                app:collapsedTitleTextAppearance="@style/TextAppearance.NarcissusFlower.Toolbar.Text"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
                 app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
@@ -131,7 +131,7 @@
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:clickable="true"
-                    android:contentDescription="Navigate to gallery screen"
+                    android:contentDescription="@string/navigate_to_gallery_screen"
                     android:focusable="true"
                     android:src="@drawable/round_photo_library_24"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -139,6 +139,7 @@
 
                 <TextView
                     android:id="@+id/plant_description"
+                    style="?android:attr/textAppearanceMedium"
                     renderHtml="@{plantDetailViewModel.plant.description}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

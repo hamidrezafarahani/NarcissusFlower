@@ -3,5 +3,27 @@
     <style name="Base.Theme.NarcissusFlower" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/green_900</item>
+        <item name="colorOnPrimary">@color/yellow_300</item>
+        <item name="colorPrimaryDark">@color/gray_50_a600</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorAccent">@color/green_300</item>
+        <item name="colorSurface">@color/green_900</item>
+        <item name="colorSecondary">@color/yellow_300</item>
+        <item name="android:colorBackground">@color/green_900</item>
     </style>
+
+    <style name="Theme.NarcissusFlower" parent="Base.Theme.NarcissusFlower" />
+
+    <style name="Theme.NarcissusFlower.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.NarcissusFlower.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="TextAppearance.NarcissusFlower.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
 </resources>

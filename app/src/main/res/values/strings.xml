@@ -9,5 +9,6 @@
     <string name="menu_filter_by_grow_zone">Filter by grow zone</string>
     <string name="menu_share">Share</string>
     <string name="plant_details_watering_needs">Watering needs</string>
+    <string name="navigate_to_gallery_screen">Navigate to gallery screen</string>
 
 </resources>
