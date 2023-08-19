@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="?attr/colorOnPrimary"
                 android:text="@string/add_plant"
-                android:textColor="?attr/colorPrimary" />
+                android:textColor="?attr/colorPrimary"
+                app:shapeAppearance="@style/ShapeAppearance.NarcissusFlower.Button.Add" />
 
         </LinearLayout>
 
