@@ -23,7 +23,11 @@ fun View.isGone(result: Boolean = false) {
 }
 
 @BindingAdapter("isFabGone")
-fun FloatingActionButton.isFabGone(isGone: Boolean = false) = if (isGone) hide() else show()
+//TODO: hide and show not works!! why?
+//fun isFabGone(fab: FloatingActionButton, isGone: Boolean) = if (isGone) fab.hide() else fab.show()
+fun FloatingActionButton.isFabGone(isGone: Boolean = false) {
+    visibility = if (isGone) View.GONE else View.VISIBLE
+}
 
 @BindingAdapter("renderHtml")
 fun TextView.bindFromHtml(description: String?) {
